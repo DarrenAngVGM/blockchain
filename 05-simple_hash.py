@@ -14,10 +14,12 @@ def main():
     user_keys = generate_keys(df.columns)
     ledger = Ledger(df)
     blockchain = ledger.generate_blockchain(user_keys)
+
     print(ledger)
     print(f"The blockchain is {blockchain}.")
     print(f"The users' private and public keys are {user_keys}.")
-    print(f"The challenge: Tamper with the register, but still ensure the hashed values are the same.")
+    print(f"The challenge: Tamper with the ledger without knowledge of the users' private keys, "
+          f"but still ensure the hashed values are the same.")
 
     # Note: You're free to call ledger.user_initiated_payment() or ledger.transaction() to simulate extra transactions.
     # They will not alter the underlying csv/ledger, though the blockchain will increase in length.
