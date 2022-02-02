@@ -1,0 +1,12 @@
+The problem:
+The blockchain is [1, 41, 37].
+The users' private and public keys are {'A': (1597390601, 1), 'B': (3811818608, 2), 'C': (3528218693, 3)}.
+
+~
+
+This hash is quite easy to break. I can just key in any 10 digit number that sums up correctly. Because no one transacts
+more than once, there's no need to find a consistent private key yet. I can just add things to the ledger without
+truly guessing the private keys.
+
+It gets harder when there's more transactions. Next step is to implement a system that requires the private keys to
+be the same, without any knowledge of the private key.
