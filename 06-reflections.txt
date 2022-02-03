@@ -1,0 +1,4 @@
+The concept now works. But the proof of work is way, way too easy.
+
+My computer, running a completely random guessing algorithm, gets it in 10^-05 seconds every time.
+It's absolutely insane. I'll try a harder problem next.

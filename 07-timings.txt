@@ -1,0 +1,14 @@
+SHA256 solution timings: guessing random numbers until the nonce is correct.
+
+2 zeroes: 0.007623917000000091s; 0.0028462500000010493s; 0.0028613340000021026s.
+3 zeroes: 0.028594250000000265s; 0.03242837500000206s; 0.08417024999999967s.
+4 zeroes: 0.9594433750000002s; 0.19584254200000117s; 0.0963656670000006s.
+5 zeroes: 7.467654249999999s; 1.5714841669999942s;
+6 zeroes: 155.641796875s
+
+It's extremely fast. It's actually crazy, wow.
+
+But things slow down a lot at 6 zeroes. I initially tried 8, but it wasn't happening. 5 is manageable, 6 takes quite
+a while already. Will use 5 for the 5-party fraud simulation.
+
+8 zeroes: Terminated at guess number 203715883. It's basically impossible with my current trash hash ahaha.
