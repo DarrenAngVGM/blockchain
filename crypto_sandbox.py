@@ -269,7 +269,7 @@ class Ledger:
             sleep(0.5)
             print(f"You currently have {self.calculate_balances()[payer_name]} ACs in your account.")
             payer_auth = input(f"Are you cool with making a transaction of {payment} ACs from your account to "
-                               f"{payer_name}? (Type 'y' if you are)\t")
+                               f"{payee_name}? (Type 'y' if you are)\t")
             if payer_auth.lower() == "y":
                 print("Thank you!\n")
             else:
