@@ -57,15 +57,15 @@ def proof_of_work(unique_trxn_data, nonce):
     sha.update(str(mine_attempt).encode("ascii"))  # Converts the guess into bits and runs it through SHA256
 
     # Calibrates number of zero bits required at the front of the SHA256 hash
-    difficulty = 5  # Change this to any integer you'd like, to see how the time taken changes!
+    difficulty = 6  # Change this to any integer you'd like, to see how the time taken changes!
     solution = "".join(["0" for i in range(difficulty)])
 
     if sha.hexdigest()[:difficulty] == solution:
-        return False
-    else:
-        print(f"Nonce for difficulty of {difficulty} zero bits found.\n"
+        print(f"\nNonce for difficulty of {difficulty} zero bits found.\n"
               f"SHA256 hash is {sha.hexdigest()}")
         return True
+    else:
+        return False
 
 
 def transaction_data(private_key, public_key, transaction_no, previous_hash):
@@ -82,7 +82,8 @@ def transaction_data(private_key, public_key, transaction_no, previous_hash):
 
 
 def miner(newest_hash):
-    """Simulates a coin miner. Needs to brute-force guess the nonce, given a hash. Rewards are imaginary for now."""
+    """Simulates a coin miner. Needs to brute-force guess the nonce, given a hash. Rewards are imaginary for now.
+    (Note: This assumes that the miner will find a solution eventually. The program will run until it does.)"""
 
     guess_counter = 0
     start = default_timer()
@@ -92,7 +93,7 @@ def miner(newest_hash):
         if proof_of_work(newest_hash, nonce_attempt) is True:
             end = default_timer()
             print(f"Time taken: {end - start}s")
-            return nonce_attempt
+            return True
         else:
             guess_counter += 1
 
@@ -206,8 +207,7 @@ class Ledger:
 
             print("Calling on a miner to conduct proof-of-work...")
             sleep(0.5)
-
-            solution = proof_of_work(solve_for, miner(solve_for))
+            solution = miner(solve_for)
 
             # Once proof-of-work is done, add the transaction to the ledger.
             if solution is True:
