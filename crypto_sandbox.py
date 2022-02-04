@@ -8,15 +8,12 @@ import hashlib
 def main():
 
     # LEDGER: The users are represented by columns, and the transactions by rows.
-    """If you wish to change the number of users or existing transactions, just edit 'ledger.csv'!
+    """If you wish to change the number of users or existing transactions, just edit 'ledger.csv'! Format should be
+    obvious; it's one negative value (payer) and one positive value (payee), with the same value (payment),
+    for each row. (Note: I did not code for error handling when reading the csv. Please key in legit values,
+    or I will be sad.) """
 
-    Format should be obvious; it's one negative value (payer) and one positive value (payee), with the same value
-    (payment), for each row.
-
-    (Note: I did not code for error handling when reading the csv. Please key in legit values, or I will be sad.) """
-
-    df = pd.read_csv("ledger.csv", index_col=0)
-    ledger = Ledger(df)
+    ledger = load_ledger()
 
     # KEYS: The users' private and public keys are freshly generated every time the code is run.
     """These keys are used to generate the unique transaction data, for proof-of-work purposes.
@@ -28,7 +25,7 @@ def main():
 
     ledger.transaction("A", "B", 1.02)
     ledger.transaction("B", "C", 5.68)
-    ledger.transaction("D", "A", 68.42)
+    ledger.transaction("C", "A", 68.42)
 
     # FINAL STATUS OF THE LEDGER: Includes all valid transactions.
     """Note that this does not change the underlying csv fed into the program."""
@@ -280,6 +277,17 @@ class Ledger:
             return False
 
         return True
+
+
+def load_ledger():
+    """Looks for a file named ledger.csv; if it does not exist, initialise an ledger with 3 users with 100 ACs."""
+    try:
+        df = pd.read_csv("ledger.csv", index_col=0)
+    except FileNotFoundError:
+        df = pd.DataFrame.from_dict({"A": [100], "B": [100], "C": [100]})
+
+    ledger = Ledger(df)
+    return ledger
 
 
 if __name__ == "__main__":
