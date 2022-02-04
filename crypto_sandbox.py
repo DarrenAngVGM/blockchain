@@ -57,7 +57,7 @@ def proof_of_work(unique_trxn_data, nonce):
     sha.update(str(mine_attempt).encode("ascii"))  # Converts the guess into bits and runs it through SHA256
 
     # Calibrates number of zero bits required at the front of the SHA256 hash
-    difficulty = 6  # Change this to any integer you'd like, to see how the time taken changes!
+    difficulty = 5  # Change this to any integer you'd like, to see how the time taken changes!
     solution = "".join(["0" for i in range(difficulty)])
 
     if sha.hexdigest()[:difficulty] == solution:
@@ -269,11 +269,11 @@ class Ledger:
             sleep(0.5)
             print(f"You currently have {self.calculate_balances()[payer_name]} ACs in your account.")
             payer_auth = input(f"Are you cool with making a transaction of {payment} ACs from your account to "
-                               f"{payee_name}? (Type 'y' if you are)\t")
+                               f"{payer_name}? (Type 'y' if you are)\t")
             if payer_auth.lower() == "y":
                 print("Thank you!\n")
             else:
-                print(f"Authentication by {payee_name} not given. Transaction declined.\n")
+                print(f"Authentication by {payer_name} not given. Transaction declined.\n")
                 return False
         else:
             print(f"Authentication by {payer_name} not given. Transaction declined.\n")
