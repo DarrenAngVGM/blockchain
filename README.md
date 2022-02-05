@@ -9,7 +9,7 @@ Now, I'm somewhat convinced, but cautious.
 
 **You're absolutely free to download and mess with this code in any way you'd like.** The file you're looking for is 'crypto_sandbox.py', which can be run on its own, or along with the 'ledger.csv' file. Or, you could just download the whole folder.
 
-I reserve no rights on any of the content in this repository. 
+I reserve no rights on any of the content in this repository. To be clear, I allow any and all uses of this project's content, including the Jupyter Notebook writeup and the blog post, under a CC0 (Public Domain) License. (See: https://creativecommons.org/share-your-work/public-domain/cc0/)
 
 ~
 
